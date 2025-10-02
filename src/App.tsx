@@ -23,28 +23,30 @@ function App() {
   }, []);
 
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center">
-      <Button onClick={() => setCount((count) => count + 1)}>
-        count is {count}
-      </Button>
-      <Button
-        onClick={() => {
-          setLoading(true);
-          fetchPayments().then((res) => {
-            setData(res);
-            setLoading(false);
-          });
-        }}
-      >
-        Fetch again
-      </Button>
+    <div className="flex min-h-svh flex-col items-center">
+      <div className="flex gap-2 mt-12">
+        <Button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </Button>
+        <Button
+          onClick={() => {
+            setLoading(true);
+            fetchPayments().then((res) => {
+              setData(res);
+              setLoading(false);
+            });
+          }}
+        >
+          Fetch again
+        </Button>
+      </div>
 
       {loading ? (
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center mt-12">
           <p>Loading...</p>
         </div>
       ) : (
-        <div className="m-4">
+        <div className="m-4 w-3xl max-w-5/6">
           <DataTable columns={columns} data={data} />
         </div>
       )}
